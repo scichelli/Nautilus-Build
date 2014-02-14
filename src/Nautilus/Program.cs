@@ -17,7 +17,7 @@ namespace Nautilus
 
         private static void BuildFromACSharpFile()
         {
-            const string buildScriptFilePath = @"C:\play\nautilus\Hello-Nautilus\BuildScript.cs";
+            const string buildScriptFilePath = @"C:\play\nautilus\Nautilus-Build\Hello-Nautilus\BuildScript.cs";
             var source = File.ReadAllText(buildScriptFilePath);
             var csharpParameters = new CompilerParameters(new []{"System.dll"})
             {
