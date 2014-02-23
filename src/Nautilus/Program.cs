@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.Build.Evaluation;
 using Microsoft.Build.Execution;
-using Microsoft.CSharp;
 
 namespace Nautilus
 {
@@ -12,22 +11,14 @@ namespace Nautilus
     {
         static void Main(string[] args)
         {
-            BuildFromACSharpFile();
+            BuildFromACSharpFile(new ScriptCompiler(), new BuildExecutor());
         }
 
-        private static void BuildFromACSharpFile()
+        private static void BuildFromACSharpFile(IScriptCompiler compiler, IBuildExecutor executor)
         {
             const string buildScriptFilePath = @"C:\play\nautilus\Nautilus-Build\Hello-Nautilus\BuildScript.cs";
             var source = File.ReadAllText(buildScriptFilePath);
-            var csharpParameters = new CompilerParameters(new []{"System.dll"})
-            {
-                GenerateExecutable = false,
-                GenerateInMemory = true,
-                IncludeDebugInformation = false
-            };
-            var options = new Dictionary<string, string> { { "CompilerVersion", "v4.0" } };
-            var provider = new CSharpCodeProvider(options);
-            var results = provider.CompileAssemblyFromSource(csharpParameters, source);
+            var results = compiler.CompileBuildScript(source);
 
             if (results.Errors.HasErrors)
             {
@@ -38,10 +29,7 @@ namespace Nautilus
             }
             else
             {
-                var compiledAssembly = results.CompiledAssembly;
-                var programClass = compiledAssembly.GetType("BuildMe.Program");
-                var mainMethod = programClass.GetMethod("Main");
-                var output = mainMethod.Invoke(null, null);
+                var output = executor.ExecuteBuildScript(results);
                 Console.WriteLine(output.ToString());
             }
             Console.ReadLine();
