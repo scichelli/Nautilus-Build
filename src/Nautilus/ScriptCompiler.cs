@@ -1,6 +1,7 @@
 ﻿using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using Microsoft.CSharp;
+using Nautilus.Framework;
 
 namespace Nautilus
 {
@@ -13,7 +14,7 @@ namespace Nautilus
     {
         public CompilerResults CompileBuildScript(string source)
         {
-            var csharpParameters = new CompilerParameters(new[] {"System.dll"})
+            var csharpParameters = new CompilerParameters(new[] {"System.dll", typeof(Worker).Assembly.Location})
                 {
                     GenerateExecutable = false,
                     GenerateInMemory = true,
