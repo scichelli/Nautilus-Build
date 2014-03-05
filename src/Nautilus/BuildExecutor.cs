@@ -4,17 +4,17 @@ namespace Nautilus
 {
     public interface IBuildExecutor
     {
-        object ExecuteBuildScript(CompilerResults results);
+        object ExecuteBuildScript(CompilerResults results, string methodToInvoke);
     }
 
     class BuildExecutor : IBuildExecutor
     {
-        public object ExecuteBuildScript(CompilerResults results)
+        public object ExecuteBuildScript(CompilerResults results, string methodToInvoke)
         {
             var compiledAssembly = results.CompiledAssembly;
             var programClass = compiledAssembly.GetType("BuildMe.Program");
-            var mainMethod = programClass.GetMethod("Main");
-            var output = mainMethod.Invoke(null, null);
+            var startingMethod = programClass.GetMethod(methodToInvoke);
+            var output = startingMethod.Invoke(null, null);
             return output;
         }
     }
