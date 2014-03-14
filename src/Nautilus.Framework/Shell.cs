@@ -5,7 +5,7 @@ using Microsoft.Build.Execution;
 
 namespace Nautilus.Framework
 {
-    public class Worker
+    public abstract class Shell
     {
         public void CompileSolution(string pathToSolution, string outputPath)
         {

@@ -14,7 +14,7 @@ namespace Nautilus
     {
         public CompilerResults CompileBuildScript(string source)
         {
-            var csharpParameters = new CompilerParameters(new[] {"System.dll", typeof(Worker).Assembly.Location})
+            var csharpParameters = new CompilerParameters(new[] {"System.dll", typeof(Shell).Assembly.Location})
                 {
                     GenerateExecutable = false,
                     GenerateInMemory = true,

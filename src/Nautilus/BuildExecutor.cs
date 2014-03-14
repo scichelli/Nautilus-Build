@@ -1,4 +1,7 @@
-﻿using System.CodeDom.Compiler;
+﻿using System;
+using System.CodeDom.Compiler;
+using System.Linq;
+using Nautilus.Framework;
 
 namespace Nautilus
 {
@@ -12,10 +15,10 @@ namespace Nautilus
         public object ExecuteBuildScript(CompilerResults results, string methodToInvoke)
         {
             var compiledAssembly = results.CompiledAssembly;
-            var programClass = compiledAssembly.GetType("BuildMe.Program");
-            var startingMethod = programClass.GetMethod(methodToInvoke);
-            var output = startingMethod.Invoke(null, null);
-            return output;
+            var shell = compiledAssembly.GetTypes().Single(t => (typeof(Shell)).IsAssignableFrom(t));
+            var mollusk = Activator.CreateInstance(shell);
+            var startOfTheBuild = mollusk.GetType().GetMethod(methodToInvoke);
+            return startOfTheBuild.Invoke(mollusk, null);
         }
     }
 }
