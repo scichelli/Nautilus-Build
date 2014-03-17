@@ -5,12 +5,12 @@ using Nautilus.Framework;
 
 namespace Nautilus
 {
-    internal interface IScriptCompiler
+    public interface IScriptCompiler
     {
         CompilerResults CompileBuildScript(string source);
     }
 
-    class ScriptCompiler : IScriptCompiler
+    public class ScriptCompiler : IScriptCompiler
     {
         public CompilerResults CompileBuildScript(string source)
         {

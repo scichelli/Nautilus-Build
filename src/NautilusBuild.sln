@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nautilus", "Nautilus\Nautil
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nautilus.Framework", "Nautilus.Framework\Nautilus.Framework.csproj", "{CA7D0344-62C2-4E1D-A1D8-D6312929B22E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nautilus.Tests", "Nautilus.Tests\Nautilus.Tests.csproj", "{C008B294-7C71-4E5C-BAE5-D4A48323208B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{CA7D0344-62C2-4E1D-A1D8-D6312929B22E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA7D0344-62C2-4E1D-A1D8-D6312929B22E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA7D0344-62C2-4E1D-A1D8-D6312929B22E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C008B294-7C71-4E5C-BAE5-D4A48323208B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C008B294-7C71-4E5C-BAE5-D4A48323208B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C008B294-7C71-4E5C-BAE5-D4A48323208B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C008B294-7C71-4E5C-BAE5-D4A48323208B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

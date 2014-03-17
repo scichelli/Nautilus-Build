@@ -45,6 +45,7 @@ namespace Nautilus
 
             if (buildScript.Errors.HasErrors)
             {
+                //TODO: Move all error reporting into one place, not here and in Program.Main.
                 Console.WriteLine("Building the Build Script failed.");
                 foreach (CompilerError error in buildScript.Errors)
                 {
@@ -56,7 +57,6 @@ namespace Nautilus
                 var output = executor.ExecuteBuildScript(buildScript, options[CommandLineOption.MethodToInvoke]);
                 Console.WriteLine(output);
             }
-            Console.ReadLine();
         }
     }
 }
