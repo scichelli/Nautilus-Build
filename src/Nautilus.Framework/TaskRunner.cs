@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Build.Evaluation;
 using Microsoft.Build.Execution;
+using System.Diagnostics;
 
 namespace Nautilus.Framework
 {
@@ -32,6 +33,26 @@ namespace Nautilus.Framework
         public void RunUnitTests()
         {
             Console.WriteLine("I ran tests!");
+        }
+
+        public void Exec(string command)
+        {
+            var cmdLine = string.Format("/C {0}", command);
+            var processInfo = new ProcessStartInfo("CMD.exe", cmdLine);
+            processInfo.UseShellExecute = false;
+            processInfo.CreateNoWindow = true;
+            processInfo.RedirectStandardOutput = true;
+            using (var process = Process.Start(processInfo))
+            {
+                process.WaitForExit();
+                Log(process.StandardOutput.ReadToEnd());
+                Log(string.Format("command: {0} exited with code {1}", command, process.ExitCode));
+            }
+        }
+
+        public void Log(string message)
+        {
+            Console.WriteLine(message);
         }
     }
 }
