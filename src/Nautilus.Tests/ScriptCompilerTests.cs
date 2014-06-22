@@ -29,7 +29,7 @@ using Nautilus.Framework;
 
 namespace TestToBuild
 {
-	public class BuildInstructions : Shell
+	public class BuildInstructions : TaskRunner
 	{
 		private const string _pathToSolution = @""C:\play\nautilus\Nautilus-Build\Hello-Nautilus\src\HelloNautilus.sln"";
 		private const string _outputPath = @""C:\play\nautilus\Nautilus-Build\Hello-Nautilus\Output"";

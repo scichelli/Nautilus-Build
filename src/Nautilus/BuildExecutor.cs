@@ -5,6 +5,8 @@ using Nautilus.Framework;
 
 namespace Nautilus
 {
+    using System.Reflection;
+
     public interface IBuildExecutor
     {
         object ExecuteBuildScript(CompilerResults results, string methodToInvoke);
@@ -15,10 +17,14 @@ namespace Nautilus
         public object ExecuteBuildScript(CompilerResults results, string methodToInvoke)
         {
             var compiledAssembly = results.CompiledAssembly;
-            var shell = compiledAssembly.GetTypes().Single(t => (typeof(Shell)).IsAssignableFrom(t));
-            var mollusk = Activator.CreateInstance(shell);
-            var startOfTheBuild = mollusk.GetType().GetMethod(methodToInvoke);
-            return startOfTheBuild.Invoke(mollusk, null);
+            var taskRunnerType = compiledAssembly.GetTypes().Single(t => (typeof(TaskRunner)).IsAssignableFrom(t));
+            var taskRunner = Activator.CreateInstance(taskRunnerType);
+            var startOfTheBuild = taskRunner.GetType()
+                .GetMethod(methodToInvoke,
+                    BindingFlags.Public | BindingFlags.Instance | 
+                    BindingFlags.Static | BindingFlags.IgnoreCase |
+                    BindingFlags.DeclaredOnly);
+            return startOfTheBuild.Invoke(taskRunner, null);
         }
     }
 }
