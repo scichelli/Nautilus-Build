@@ -8,13 +8,12 @@ namespace Nautilus.Framework
 {
     public abstract class TaskRunner
     {
-        public void CompileSolution(string pathToSolution, string outputPath)
+        public void CompileSolution(string pathToSolution)
         {
             var projectCollection = new ProjectCollection();
             var globalProperty = new Dictionary<string, string>
                 {
                     {"Configuration", "Debug"},
-                    {"OutputPath", outputPath}
                 };
 
             var buildParameters = new BuildParameters(projectCollection);
