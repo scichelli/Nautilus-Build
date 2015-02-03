@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Build.Evaluation;
 using Microsoft.Build.Execution;
 using System.Diagnostics;
+using System.Management.Automation;
 
 namespace Nautilus.Framework
 {
@@ -47,6 +48,13 @@ namespace Nautilus.Framework
                 Log(process.StandardOutput.ReadToEnd());
                 Log(string.Format("command: {0} exited with code {1}", command, process.ExitCode));
             }
+        }
+
+        public void RunPowerShell(string pathToPowerShellScript)
+        {
+            var ps = PowerShell.Create();
+            ps.AddScript(pathToPowerShellScript);
+            ps.Invoke();
         }
 
         public void Log(string message)
