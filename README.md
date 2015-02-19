@@ -1,4 +1,4 @@
 Nautilus-Build
 ==============
 
-C# build scripts in C#
+C# build automation in C#
