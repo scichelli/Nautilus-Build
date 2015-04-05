@@ -30,8 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fixie">
-      <HintPath>..\packages\Fixie.0.0.1.144\lib\net45\Fixie.dll</HintPath>
+    <Reference Include="Fixie, Version=1.0.0.15, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Fixie.1.0.0.15\lib\net45\Fixie.dll</HintPath>
     </Reference>
     <Reference Include="Should">
       <HintPath>..\packages\Should.1.1.20\lib\Should.dll</HintPath>
@@ -60,6 +61,9 @@
       <Project>{50d78a3b-1168-4ccd-9be4-3a899ed4ebf6}</Project>
       <Name>Nautilus</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
