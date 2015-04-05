@@ -2,19 +2,18 @@
 using System.CodeDom.Compiler;
 using System.Linq;
 using Nautilus.Framework;
+using System.Reflection;
 
 namespace Nautilus
 {
-    using System.Reflection;
-
     public interface IBuildExecutor
     {
-        object ExecuteBuildScript(CompilerResults results, string methodToInvoke);
+        object ExecuteBuildInstructions(CompilerResults results, string methodToInvoke);
     }
 
     class BuildExecutor : IBuildExecutor
     {
-        public object ExecuteBuildScript(CompilerResults results, string methodToInvoke)
+        public object ExecuteBuildInstructions(CompilerResults results, string methodToInvoke)
         {
             var compiledAssembly = results.CompiledAssembly;
             var buildInstructionsType = compiledAssembly.GetTypes().Single(t => (typeof(BuildInstructions)).IsAssignableFrom(t));

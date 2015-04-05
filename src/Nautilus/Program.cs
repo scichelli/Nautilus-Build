@@ -54,7 +54,7 @@ namespace Nautilus
             }
             else
             {
-                var output = executor.ExecuteBuildScript(buildScript, options[CommandLineOption.MethodToInvoke]);
+                var output = executor.ExecuteBuildInstructions(buildScript, options[CommandLineOption.MethodToInvoke]);
                 Console.WriteLine(output);
             }
         }
