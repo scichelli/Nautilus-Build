@@ -1,1 +1,1 @@
-..\src\Nautilus\bin\Release\nautilus.exe --script ".\BuildInstructions.cs" --call Default
+..\src\Nautilus\bin\Release\nautilus.exe --instructions ".\BuildInstructions.cs" --call Default

@@ -53,7 +53,7 @@ namespace Nautilus
 
     public class CommandLineOption
     {
-        public const string PathToScript = "script";
+        public const string PathToBuildInstructions = "instructions";
         public const string MethodToInvoke = "call";
     }
 }

@@ -25,7 +25,7 @@ namespace Nautilus
                     return FatalError;
                 }
 
-                ExecuteBuildScript(new BuildInstructionsCompiler(), new BuildExecutor(), commandLineParser.Options);
+                ExecuteBuildInstructions(new BuildInstructionsCompiler(), new BuildExecutor(), commandLineParser.Options);
                 Console.ReadLine();
                 return Success;
             }
@@ -37,24 +37,24 @@ namespace Nautilus
             }
         }
 
-        private static void ExecuteBuildScript(IBuildInstructionsCompiler compiler, IBuildExecutor executor, Dictionary<string, string> options)
+        private static void ExecuteBuildInstructions(IBuildInstructionsCompiler compiler, IBuildExecutor executor, Dictionary<string, string> options)
         {
-            var buildScriptFilePath = options[CommandLineOption.PathToScript];
-            var source = File.ReadAllText(buildScriptFilePath);
-            var buildScript = compiler.Compile(source);
+            var instructionsFilePath = options[CommandLineOption.PathToBuildInstructions];
+            var source = File.ReadAllText(instructionsFilePath);
+            var instructions = compiler.Compile(source);
 
-            if (buildScript.Errors.HasErrors)
+            if (instructions.Errors.HasErrors)
             {
                 //TODO: Move all error reporting into one place, not here and in Program.Main.
-                Console.WriteLine("Building the Build Script failed.");
-                foreach (CompilerError error in buildScript.Errors)
+                Console.WriteLine("Building the Build Instructions failed.");
+                foreach (CompilerError error in instructions.Errors)
                 {
                     Console.WriteLine(error.ErrorText);
                 }
             }
             else
             {
-                var output = executor.ExecuteBuildInstructions(buildScript, options[CommandLineOption.MethodToInvoke]);
+                var output = executor.ExecuteBuildInstructions(instructions, options[CommandLineOption.MethodToInvoke]);
                 Console.WriteLine(output);
             }
         }
