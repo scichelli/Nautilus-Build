@@ -31,7 +31,7 @@ namespace TestToBuild
 {
 	public class SampleBuildInstructions : BuildInstructions
 	{
-		private const string _pathToSolution = @""C:\play\nautilus\Nautilus-Build\Hello-Nautilus\src\HelloNautilus.sln"";
+		private const string _pathToSolution = @"".\src\HelloNautilus.sln"";
 
 		public void Default()
 		{
