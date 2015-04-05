@@ -5,14 +5,14 @@ using Nautilus.Framework;
 
 namespace Nautilus
 {
-    public interface IScriptCompiler
+    public interface IBuildInstructionsCompiler
     {
-        CompilerResults CompileBuildScript(string source);
+        CompilerResults Compile(string source);
     }
 
-    public class ScriptCompiler : IScriptCompiler
+    public class BuildInstructionsCompiler : IBuildInstructionsCompiler
     {
-        public CompilerResults CompileBuildScript(string source)
+        public CompilerResults Compile(string source)
         {
             var csharpParameters = new CompilerParameters(new[] {"System.dll", typeof(BuildInstructions).Assembly.Location})
                 {

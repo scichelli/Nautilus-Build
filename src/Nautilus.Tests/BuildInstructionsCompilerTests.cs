@@ -2,29 +2,29 @@
 
 namespace Nautilus.Tests
 {
-    public class ScriptCompilerTests
+    public class BuildInstructionsCompilerTests
     {
-        private readonly ScriptCompiler _scriptCompiler;
+        private readonly BuildInstructionsCompiler _buildInstructionsCompiler;
 
-        public ScriptCompilerTests()
+        public BuildInstructionsCompilerTests()
         {
-            _scriptCompiler = new ScriptCompiler();
+            _buildInstructionsCompiler = new BuildInstructionsCompiler();
         }
 
         public void BaselineCompilerTest()
         {
-            var results = _scriptCompiler.CompileBuildScript(Script);
+            var results = _buildInstructionsCompiler.Compile(Instructions);
             results.Errors.HasErrors.ShouldBeFalse();
         }
 
         public void ReportingCompilerErrors()
         {
-            var results = _scriptCompiler.CompileBuildScript(string.Format("{0} invalid code", Script));
+            var results = _buildInstructionsCompiler.Compile(string.Format("{0} invalid code", Instructions));
             results.Errors.HasErrors.ShouldBeTrue();
             results.Errors.Count.ShouldEqual(1);
         }
 
-        private const string Script = @"
+        private const string Instructions = @"
 using Nautilus.Framework;
 
 namespace TestToBuild

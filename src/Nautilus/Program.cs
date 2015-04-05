@@ -25,7 +25,7 @@ namespace Nautilus
                     return FatalError;
                 }
 
-                ExecuteBuildScript(new ScriptCompiler(), new BuildExecutor(), commandLineParser.Options);
+                ExecuteBuildScript(new BuildInstructionsCompiler(), new BuildExecutor(), commandLineParser.Options);
                 Console.ReadLine();
                 return Success;
             }
@@ -37,11 +37,11 @@ namespace Nautilus
             }
         }
 
-        private static void ExecuteBuildScript(IScriptCompiler compiler, IBuildExecutor executor, Dictionary<string, string> options)
+        private static void ExecuteBuildScript(IBuildInstructionsCompiler compiler, IBuildExecutor executor, Dictionary<string, string> options)
         {
             var buildScriptFilePath = options[CommandLineOption.PathToScript];
             var source = File.ReadAllText(buildScriptFilePath);
-            var buildScript = compiler.CompileBuildScript(source);
+            var buildScript = compiler.Compile(source);
 
             if (buildScript.Errors.HasErrors)
             {
