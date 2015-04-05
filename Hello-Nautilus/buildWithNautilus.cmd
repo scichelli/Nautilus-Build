@@ -1,0 +1,1 @@
+..\src\Nautilus\bin\Release\nautilus.exe --script ".\BuildInstructions.cs" --call Default

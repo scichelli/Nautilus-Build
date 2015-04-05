@@ -4,12 +4,11 @@ namespace BuildMe
 {
 	public class BuildInstructions : TaskRunner
 	{
-		private const string _pathToSolution = @"C:\play\nautilus\Nautilus-Build\Hello-Nautilus\src\HelloNautilus.sln";
-		private const string _outputPath = @"C:\play\nautilus\Nautilus-Build\Hello-Nautilus\Output";
+		private const string _pathToSolution = @".\src\HelloNautilus.sln";
 
 		public string Default()
 		{
-			CompileSolution(_pathToSolution, _outputPath);
+			CompileSolution(_pathToSolution);
 			RunUnitTests();
 			return "Successfully executed Nautilus TaskRunner.";
 		}
