@@ -1,8 +1,6 @@
-using Nautilus.Framework;
-
 namespace BuildMe
 {
-	public class BuildInstructions : TaskRunner
+	public class BuildInstructions : Nautilus.Framework.BuildInstructions
 	{
 		private const string _pathToSolution = @".\src\HelloNautilus.sln";
 
@@ -10,7 +8,7 @@ namespace BuildMe
 		{
 			CompileSolution(_pathToSolution);
 			RunUnitTests();
-			return "Successfully executed Nautilus TaskRunner.";
+			return "Successfully executed Nautilus Build Instructions.";
 		}
 	}
 }

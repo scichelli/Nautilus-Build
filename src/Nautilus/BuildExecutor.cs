@@ -17,14 +17,14 @@ namespace Nautilus
         public object ExecuteBuildScript(CompilerResults results, string methodToInvoke)
         {
             var compiledAssembly = results.CompiledAssembly;
-            var taskRunnerType = compiledAssembly.GetTypes().Single(t => (typeof(TaskRunner)).IsAssignableFrom(t));
-            var taskRunner = Activator.CreateInstance(taskRunnerType);
-            var startOfTheBuild = taskRunner.GetType()
+            var buildInstructionsType = compiledAssembly.GetTypes().Single(t => (typeof(BuildInstructions)).IsAssignableFrom(t));
+            var buildInstructions = Activator.CreateInstance(buildInstructionsType);
+            var startOfTheBuild = buildInstructions.GetType()
                 .GetMethod(methodToInvoke,
                     BindingFlags.Public | BindingFlags.Instance | 
                     BindingFlags.Static | BindingFlags.IgnoreCase |
                     BindingFlags.DeclaredOnly);
-            return startOfTheBuild.Invoke(taskRunner, null);
+            return startOfTheBuild.Invoke(buildInstructions, null);
         }
     }
 }
